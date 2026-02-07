@@ -18,7 +18,7 @@ namespace Tracer.Core {
             List<MethodInfo> methods = new();
             foreach (PrivateMethodInfo child in Children)
                 methods.Add(child.ToMethodInfo());
-            return new MethodInfo(Name, Class, Stopwatch.ElapsedMilliseconds, methods);
+            return new MethodInfo(Name, Class, Stopwatch.ElapsedMilliseconds, methods.AsReadOnly());
         }
     }
 }
