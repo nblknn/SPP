@@ -67,6 +67,7 @@ namespace Lab_2 {
                 result = Activator.CreateInstance(t, true);
             _createdTypes[t] = result;
             SetDefaultProperties(result, t);
+            _createdTypes.Remove(t);
             return result;
         }
 
