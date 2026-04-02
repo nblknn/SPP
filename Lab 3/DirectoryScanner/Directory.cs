@@ -20,7 +20,7 @@
                         var dir = new Directory(entry);
                         Files.Add(dir);
                         ThreadPool.QueueUserWorkItem(dir.ProcessFiles, state);
-                        param.count++;
+                        Interlocked.Increment(ref param.Count);
                     }
 
                     foreach (string entry in System.IO.Directory.GetFiles(Name)) {
@@ -35,8 +35,8 @@
                 catch (Exception e) {
                 }
 
-            Interlocked.Decrement(ref param.count);
-            if (param.count == 0)
+            Interlocked.Decrement(ref param.Count);
+            if (param.Count == 0)
                 lock (param.MonitorObj) {
                     Monitor.Pulse(param.MonitorObj);
                 }

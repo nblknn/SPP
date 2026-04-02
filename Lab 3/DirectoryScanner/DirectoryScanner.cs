@@ -20,7 +20,7 @@
 
         private void Scan() {
             ThreadParam param = new ThreadParam(_semaphore, new object(), _source.Token);
-            param.count = 1;
+            param.Count = 1;
             ThreadPool.QueueUserWorkItem(_dir.ProcessFiles, param);
             lock (param.MonitorObj) {
                 Monitor.Wait(param.MonitorObj);
